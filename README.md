@@ -1,4 +1,4 @@
-# Simple Message Queue Example
+# Simple Hapi.Js Typescript app
 DIRECTORY STRUCTURE
 -------------------
 
