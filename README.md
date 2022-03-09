@@ -20,7 +20,7 @@ $ git clone https://github.com/tatev-s/hapijs-typescript.git
 $ cd hapijs-typescript
 ```
 ```sh
-$ npm start
+$ npm install
 ```
 
 Create .env file for example
