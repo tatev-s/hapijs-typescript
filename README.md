@@ -22,7 +22,12 @@ $ cd hapijs-typescript
 ```sh
 $ npm install
 ```
-
+```sh
+npm run dev:tsc
+```
+```sh
+npm run dev:serve
+```
 Create .env file for example
 ```sh
 PORT=3000
