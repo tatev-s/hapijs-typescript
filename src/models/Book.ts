@@ -9,7 +9,7 @@ export interface IBook {
   price: number;
   createdAt: Date;
   updateAt: Date;
-  stores: Array<ObjectId>;
+  stores: ObjectId[];
 }
 
 // Schema

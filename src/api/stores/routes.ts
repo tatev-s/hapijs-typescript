@@ -5,8 +5,8 @@ import { ServerRoute } from "@hapi/hapi";
 
 const storeController: StoreController = new StoreController();
 
-export function storeRoutes(): Array<ServerRoute> {
-  let routes: Array<ServerRoute> = [
+export function storeRoutes(): ServerRoute[] {
+  return [
     {
       method: "GET",
       path: "/store/{id}/get",
@@ -30,5 +30,4 @@ export function storeRoutes(): Array<ServerRoute> {
       },
     },
   ];
-  return routes;
 }

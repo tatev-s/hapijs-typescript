@@ -14,10 +14,10 @@ import { cacheBooKs } from "../../server";
 export default class BookController {
   public async create(request: IRequest, toolkit: Hapi.ResponseToolkit) {
     try {
-      const payload: IBook = <IBook>request.payload;
-      const storeIds: Array<ObjectId> = await validateStoreIds(payload.stores);
+      const payload: IBook = request.payload as IBook;
+      const storeIds: ObjectId[] = await validateStoreIds(payload.stores);
       if (!storeIds.length) {
-        throw new Error("Store ids are not valid");
+        return new Error("Store ids are not valid");
       }
       const payloadData: IBook = { ...payload, stores: storeIds };
       const book: IBook = await BookService.create(payloadData);

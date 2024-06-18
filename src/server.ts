@@ -13,7 +13,7 @@ import { BookDocName } from "./models/Book";
 import { StoreDocName } from "./models/Store";
 import { IPlugin } from "./utils/plugins/interfaces";
 
-//Starting Application Server
+// Starting Application Server
 const configs = Configs.getServerConfigs();
 const dbConfigs = Configs.getDatabaseConfig();
 const database = Database.init(dbConfigs);
@@ -49,28 +49,28 @@ if (configs.routePrefix) {
 }
 
 export const setupPlugins = async () => {
-  const plugins: Array<string> = configs.plugins;
+  const plugins: string[] = configs.plugins;
   const pluginOptions = {
-    database: database,
+    database,
     serverConfigs: configs,
   };
   // List of all plugins
-  let pluginPromises: Promise<any>[] = plugins.map((pluginName: string) => {
+  const pluginPromises: Promise<any>[] = plugins.map((pluginName: string) => {
     const plugin: IPlugin = require("./utils/plugins/" + pluginName).default();
-    console.log(
+    console.info(
       `Register Plugin ${plugin.info().name} v${plugin.info().version}`
     );
     return plugin.register(server, pluginOptions);
   });
   await Promise.all(pluginPromises);
-  console.log("All plugins registered successfully.");
+  console.info("All plugins registered successfully.");
 
-  //register all routes
+  // register all routes
   Api.RegisterRoutes(server);
 };
 
 
-//cache books
+// cache books
 export const cacheBooKs = server.cache({
   expiresIn: 60 * 60 * 24 * 1000,
   segment: BookDocName,
@@ -84,7 +84,7 @@ export const cacheBooKs = server.cache({
   generateTimeout: 2000,
 });
 
-//cache stores
+// cache stores
 export const cacheStores = server.cache({
   expiresIn: 60 * 60 * 24 * 1000,
   segment: StoreDocName,

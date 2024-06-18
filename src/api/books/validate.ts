@@ -3,17 +3,17 @@ import Joi from "joi";
 import { ObjectId } from "mongoose";
 import StoreDocModel, { IStore } from "../../models/Store";
 
-export const validateStoreIds = async (stores: Array<ObjectId>) => {
+export const validateStoreIds = async (stores: ObjectId[]) => {
   const storePromises = stores.map((storeId) =>
     StoreDocModel.findById(storeId)
   );
   try {
     const data = await Promise.allSettled(storePromises);
-    const res: Array<ObjectId> = data
+    const res: ObjectId[] = data
       .filter(
         (item) => item.status === "fulfilled" && item.value && item.value._id
-      )
-      .map((item_1) => (item_1 as PromiseFulfilledResult<IStore>).value._id);
+      )// @ts-ignore
+      .map((item): ObjectId => item.value._id);
     return res;
   } catch (error) {
     throw error;

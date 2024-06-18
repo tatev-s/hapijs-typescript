@@ -3,6 +3,9 @@
   "extends": ["tslint:recommended"],
   "jsRules": {},
   "rules": {
+    "no-console": {
+      "severity": "warning"
+    },
     "no-trailing-whitespace": false,
     "object-literal-key-quotes": false,
     "object-literal-sort-keys": false,
@@ -12,13 +15,8 @@
     "arrow-parens": false,
     "quotemark": false,
     "trailing-comma": false,
-    "semicolon": [
-      true,
-      "always",
-      "ignore-interfaces",
-      "ignore-bound-class-methods"
-    ],
-    "member-ordering": [true, "variables-before-functions"]
+    "semicolon": true,
+    "member-ordering": true
   },
   "rulesDirectory": []
 }

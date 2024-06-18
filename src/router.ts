@@ -5,7 +5,7 @@ import * as Store from "./api/stores/routes";
 
 // Create routes array for register routes on server
 export function RegisterRoutes(server: Server): void {
-  let routes: Array<ServerRoute> = [
+  const routes: ServerRoute[] = [
     ...Book.bookRoutes(),
     ...Store.storeRoutes(),
   ];

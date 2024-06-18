@@ -1,20 +1,14 @@
-import * as _ from "lodash";
 import mongoose from "mongoose";
 
-import Book, { IBook } from "../../models/Book";
-import { StoreDocName } from "../../models/Store";
+import Book, {IBook} from "../../models/Book";
+import {StoreDocName} from "../../models/Store";
 
-// function sleep(ms:number) {
-//   return new Promise((resolve) => {
-//     setTimeout(resolve, ms);
-//   });
-// }
 export default class BookService {
 
   public static async create(payload: IBook) {
     try {
       const book: IBook = await Book.create(payload);
-      return book
+      return book;
     } catch (e: any) {
       throw e;
     }
@@ -22,9 +16,8 @@ export default class BookService {
 
   public static async getById(id: string) {
     try {
-      //await sleep(1000);
-      const book = await Book.aggregate([
-        { $match: { _id: new mongoose.Types.ObjectId(id) } },
+      return await Book.aggregate([
+        {$match: {_id: new mongoose.Types.ObjectId(id)}},
         {
           $lookup: {
             from: StoreDocName,
@@ -34,7 +27,6 @@ export default class BookService {
           },
         },
       ]);
-      return book;
     } catch (e: any) {
       throw e;
     }

@@ -1,8 +1,6 @@
-import * as _ from "lodash";
-
 import mongoose from "mongoose";
-import Store, { IStore } from "../../models/Store";
 
+import Store, { IStore } from "../../models/Store";
 import { BookDocName } from "../../models/Book";
 
 export default class StoreService {

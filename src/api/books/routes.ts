@@ -1,12 +1,12 @@
 import BookController from "./controller";
 import validate from "./validate";
 
-import { ServerRoute } from "@hapi/hapi";
+import {ServerRoute} from "@hapi/hapi";
 
 const bookController: BookController = new BookController();
 
-export function bookRoutes(): Array<ServerRoute> {
-  let routes: Array<ServerRoute> = [
+export function bookRoutes(): ServerRoute[] {
+  return [
     {
       method: "GET",
       path: "/book/{id}/get",
@@ -30,5 +30,4 @@ export function bookRoutes(): Array<ServerRoute> {
       },
     },
   ];
-  return routes;
 }

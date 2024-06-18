@@ -11,10 +11,10 @@ export interface IDatabase {
 }
 
 export function init(config: IDataConfiguration): IDatabase {
-  (<any>Mongoose).Promise = Promise;
+  Mongoose.Promise = Promise;
   Mongoose.connect(config.connectionString);
 
-  let mongoDb = Mongoose.connection;
+  const mongoDb = Mongoose.connection;
   // Mongodb error when unable to connect
   mongoDb.on("error", () => {
     console.log(`Unable to connect to database: ${config.connectionString}`);
